@@ -28,7 +28,7 @@ export class CategoryUpdateComponent implements OnInit {
   findById(): void {
     this.service.findById(this.category.id!).subscribe ((resposta) => {
       this.category = resposta;
-    })
+    });
   }
 
   update(): void {
@@ -36,8 +36,8 @@ export class CategoryUpdateComponent implements OnInit {
       this.router.navigate(['categories'])
       this.service.message('Category updated successfully!')
     }, err => {
-      console.log(err);
-    })
+      this.service.message('Validate that all fields are filled in correctly')
+    });
   }
 
   cancel(): void {
