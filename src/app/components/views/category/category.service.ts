@@ -35,7 +35,12 @@ export class CategoryService {
     const url = `${this.baseUrl}/categories/${id}`
     return this.http.delete<void>(url)
   }
-  
+
+  update(category: Category): Observable<void> {
+    const url = `${this.baseUrl}/categories/${category.id}`
+    return this.http.put<void>(url, category)
+  }
+
   message(str: String): void {
     this._snack.open(`${str}`, 'OK', {
       horizontalPosition: 'end',
