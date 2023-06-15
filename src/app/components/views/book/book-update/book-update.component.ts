@@ -24,7 +24,6 @@ export class BookUpdateComponent implements OnInit {
     text: "",
   }
 
-
   constructor(
     private service: BookService,
     private route: ActivatedRoute,
@@ -33,9 +32,25 @@ export class BookUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.id_cat = this.route.snapshot.paramMap.get("id_cat")!;
     this.book.id = this.route.snapshot.paramMap.get("id")!;
+    this.findById();
   }
 
-  
+  findById(): void {
+    this.service.findById(this.book.id!).subscribe((resposta) => {
+      this.book = resposta;
+    })
+  }
+
+  update(): void {
+    this.service.update(this.book).subscribe((resposta) => {
+      this.router.navigate([`categories/${this.id_cat}/books`]);
+      this.service.message('Successfully updated book!')
+    }, err => {
+      this.router.navigate([`categories/${this.id_cat}/books`]);
+      this.service.message('Failed to update book! Try again later ..')
+    })
+  }
+
   cancel(): void {
     this.router.navigate([`categories/${this.id_cat}/books`]);
   }
