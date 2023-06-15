@@ -7,6 +7,7 @@ import { CategoryDeleteComponent } from './components/views/category/category-de
 import { CategoryUpdateComponent } from './components/views/category/category-update/category-update.component';
 import { BookReadAllComponent } from './components/views/book/book-read-all/book-read-all.component';
 import { BookCreateComponent } from './components/views/book/book-create/book-create.component';
+import { BookUpdateComponent } from './components/views/book/book-update/book-update.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'categories/:id_cat/books/create',
     component: BookCreateComponent
+  },
+  {
+    path: 'categories/:id_cat/books/:id/update',
+    component: BookUpdateComponent
   }
 ];
 
