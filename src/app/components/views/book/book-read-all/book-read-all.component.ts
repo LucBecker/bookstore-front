@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Book } from '../book.model';
 
 @Component({
@@ -18,7 +18,8 @@ export class BookReadAllComponent implements OnInit {
 
   constructor(
     private service: BookService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +31,10 @@ export class BookReadAllComponent implements OnInit {
     this.service.findAllByCategory(this.id_cat).subscribe(resposta => {
       this.books = resposta;
     })
+  }
+
+  BrowseToCreateBook(): void {
+    this.router.navigate([`categories/${this.id_cat}/books/create`])
   }
 
 }
